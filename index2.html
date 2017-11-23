@@ -1,0 +1,138 @@
+<script>
+	
+/*
+
+(function (global, undefined) {
+
+	var hQurey = function(selector, content){
+
+	};
+
+	hQurey.prototype = {
+
+		sayHello: function(){
+			console.log('hello world');
+		}
+
+	};
+	window.$ = hQuery;
+	window.hQuery = hQuery;
+})(window, undefined);
+
+var node = new hQurey();
+node.sayHello();
+
+var node1 = new $('div');
+var node2 = new $('body');
+
+//$('div')
+//$('body')
+
+*/
+//--------------------------------------------
+
+
+/*
+(function (global, undefined) {
+
+	var hQuery = function(selector, context){
+		return new hQuery.prototype.init(selector, context);
+	};
+
+	hQuery.prototype = {
+		init: function(selector, context){
+
+		},
+		sayHello: function(){
+			console.log('hello world');
+		}
+
+	};
+	window.$ = hQuery;
+	window.hQuery = hQuery;
+})(window, undefined);
+
+
+
+$('div')
+$('body')
+//$('body')
+
+*/
+
+
+
+/*
+
+
+var hQuery = function(selector, content){
+	return hQuery.prototype.init(selector, content);
+};
+
+hQuery.prototype = {
+
+	init: function(selector, content){
+		console.log(this === hQuery.prototype);
+		return this;
+	},
+	sayHello: function(){
+		console.log('hello world');
+	}
+
+};
+window.hQuery = window.$ = hQuery;
+
+
+$().sayHello();
+
+*/
+
+
+//------------------------------------------
+
+
+
+
+var hQuery = function(selector, content){
+	return new hQuery.prototype.init(selector, content);
+};
+
+hQuery.prototype = {
+	constructor: hQuery,
+	init: function(selector, content){
+		this.selector = selector;
+		this.context = content;
+		// /return this;
+	}
+
+};
+
+hQuery.prototype.init.prototype = hQuery.prototype;   //2937
+
+hQuery.extend = hQuery.prototype.extend = function(obj){
+	for(var key in obj){
+		this[key] = obj[key];
+	}
+};
+
+
+
+hQuery.extend({
+	isArray: Array.isArray,
+	ajax: function(){}
+});
+
+hQuery.prototype.extend({
+	addClass: function(){console.log('add class...')},
+	sayHello: function(){
+		console.log('hello '+ this.selector);
+	}
+});
+
+
+window.hQuery = window.$ = hQuery;
+
+
+
+
+</script>

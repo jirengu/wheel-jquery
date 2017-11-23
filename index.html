@@ -1,0 +1,46 @@
+<script>
+
+
+(function( global, factory ) {
+
+	factory( global );
+
+}(window, function( window, noGlobal ) {
+
+	var Hunger = function(selector, context) {
+
+		return new Hunger.fn.init(selector, context);
+	};
+
+	Hunger.fn = Hunger.prototype = {
+
+
+		Hunger: version,
+
+		constructor: Hunger,
+
+		toArray: function() {
+			return slice.call(this);
+		}
+	};
+
+	Hunger.extend({
+		isArray: Array.isArray
+	}
+
+
+	var _Hunger = window.Hunger,
+
+
+	if (!noGlobal) {
+		window.Hunger = window.$ = Hunger;
+	}
+
+	return Hunger;
+
+
+});
+
+
+
+</script>
